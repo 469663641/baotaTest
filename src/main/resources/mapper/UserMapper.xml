@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.example.mapper.UserMapper">
+
+    <resultMap id="userResult" type="com.example.model.User">
+        <result column="account" property="account"/>
+        <result column="nickname" property="nickname"/>
+        <result column="type" property="type"/>
+        <result column="mobile" property="mobile"/>
+        <result column="telephone" property="telephone"/>
+        <result column="superior_account" property="superiorAccount"/>
+        <result column="organization_id" property="organizationId"/>
+        <result column="organization_name" property="organizationName"/>
+        <result column="assign_case" property="assignCase"/>
+        <result column="enabled" property="enabled"/>
+        <result column="updated_by" property="updatedBy"/>
+        <result column="created_time" property="createTime"/>
+    </resultMap>
+
+
+    <sql id="columns">
+        account,
+        nickname,
+        type,
+        mobile,
+        telephone,
+        superior_account,
+        organization_id,
+        organization_name,
+        assign_case,
+        enabled,
+        updated_by,
+        created_time
+
+    </sql>
+
+    <insert id="insert" parameterType="com.example.model.User">
+
+    INSERT INTO backend_user
+    (<include refid="columns" />)
+    VALUES
+    (
+    #{account},
+    #{nickname},
+    #{type},
+    #{mobile},
+    #{telephone},
+    #{superiorAccount},
+    #{organizationId},
+    #{organizationName},
+    #{assignCase},
+    #{enabled},
+    #{updatedBy},
+    #{createTime}
+    )
+    </insert>
+
+    <select id="queryByAccount" resultMap="userResult">
+        SELECT
+        <include refid="columns"/>
+        FROM backend_user
+        WHERE
+        account = #{account}
+        limit 1
+    </select>
+
+
+</mapper>
