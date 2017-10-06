@@ -19,7 +19,7 @@ public class UserServiceTest {
     @Autowired
     private UserService userService;
 
-    @Value("${aa}")
+    @Value("${aa:77}")
     private String aa;
 
     @Test
@@ -41,7 +41,7 @@ public class UserServiceTest {
     }
     @Test
     public void testQueryByAccount(){
-        User user = userService.queryByAccount("12345");
+        User user = userService.queryByAccount("baota");
         System.err.println(user);
 
     }
