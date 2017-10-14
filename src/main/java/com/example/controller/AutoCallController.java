@@ -4,6 +4,7 @@ import com.example.service.ivrCall.api.dto.AutoCallDTO;
 import com.example.service.ivrCall.dao.po.AutoCall;
 import com.example.service.ivrCall.dao.repository.AutoCallRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -25,15 +26,13 @@ public class AutoCallController {
 
         //AutoCall autoCall = autoCallRepository.findOne(id);
         AutoCall autoCall = autoCallRepository.findByBusinessKey(id);
-
         return autoCall;
-
     }
 
     @RequestMapping(value = "/insert/{id}", method = RequestMethod.POST)
+    @Transactional//事务注解
     public AutoCall insertAutoCall(@PathVariable("id") Long id,
                                @RequestParam(value = "businessKey",required = false) String busInessKey){
-
         AutoCall autoCall = new AutoCall();
         autoCall.setId(id);
         autoCall.setBusinessKey(busInessKey);
@@ -47,13 +46,9 @@ public class AutoCallController {
 
         AutoCall autoCall = new AutoCall();
         autoCall.setId(id);
-
         autoCall.setBusinessKey(autoCallDTO.getBusinessKey());
-
         autoCall = autoCallRepository.save(autoCall);
         return autoCall;
-
-
 
     }
 
