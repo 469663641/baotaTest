@@ -1,9 +1,9 @@
 package com.example.service;
 
-import com.example.service.strategyModelExample.api.Quackable;
-import com.example.service.strategyModelExample.core.GentleDuck;
-import com.example.service.strategyModelExample.core.GentleQuack;
-import com.example.service.strategyModelExample.core.HarshQuack;
+import com.example.service.strategy.model.api.Quackable;
+import com.example.service.strategy.model.core.GentleDuck;
+import com.example.service.strategy.model.core.GentleQuack;
+import com.example.service.strategy.model.core.HarshQuack;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.BeansException;

@@ -1,8 +1,8 @@
 package com.example.controller;
 
-import com.example.service.ivrCall.api.dto.AutoCallDTO;
-import com.example.service.ivrCall.dao.po.AutoCall;
-import com.example.service.ivrCall.dao.repository.AutoCallRepository;
+import com.example.service.ivrcall.api.dto.AutoCallDTO;
+import com.example.service.ivrcall.dao.po.AutoCall;
+import com.example.service.ivrcall.dao.repository.AutoCallRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.PathVariable;
