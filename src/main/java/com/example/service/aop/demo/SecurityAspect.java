@@ -16,6 +16,10 @@ public class SecurityAspect {
     @Autowired
     private AuthService authService;
 
+
+    /**
+     * 拦截带有@annotation(AdminOnly)注解的方法
+     */
     @Pointcut("@annotation(AdminOnly)")
     public void adminOnly(){
 
