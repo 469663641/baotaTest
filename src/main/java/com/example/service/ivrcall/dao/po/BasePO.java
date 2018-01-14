@@ -1,4 +1,4 @@
-package com.example.service.ivrCall.dao.po;
+package com.example.service.ivrcall.dao.po;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;

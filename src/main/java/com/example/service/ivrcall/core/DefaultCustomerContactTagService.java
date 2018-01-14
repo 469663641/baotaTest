@@ -1,10 +1,10 @@
-package com.example.service.ivrCall.core;
+package com.example.service.ivrcall.core;
 
-import com.example.service.ivrCall.api.CustomerContactTagService;
-import com.example.service.ivrCall.api.dto.CustomerContactTagDTO;
-import com.example.service.ivrCall.core.util.Convertor;
-import com.example.service.ivrCall.dao.po.CustomerContactTag;
-import com.example.service.ivrCall.dao.repository.CustomerContactTagRepository;
+import com.example.service.ivrcall.api.CustomerContactTagService;
+import com.example.service.ivrcall.api.dto.CustomerContactTagDTO;
+import com.example.service.ivrcall.core.util.Convertor;
+import com.example.service.ivrcall.dao.po.CustomerContactTag;
+import com.example.service.ivrcall.dao.repository.CustomerContactTagRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

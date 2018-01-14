@@ -1,11 +1,8 @@
-package com.example.service.ivrCall.dao.po;
+package com.example.service.ivrcall.api.dto;
 
+import com.example.service.ivrcall.dao.po.BasePO;
 import lombok.Data;
-import lombok.Getter;
-import lombok.Setter;
 
-import javax.persistence.Entity;
-import javax.persistence.Table;
 import java.math.BigDecimal;
 import java.util.Date;
 
@@ -13,9 +10,7 @@ import java.util.Date;
  * Created by baota on 2017/7/26.
  */
 @Data
-@Entity
-@Table(name = "gbl_auto_call")
-public class AutoCall extends BasePO {
+public class AutoCallDTO extends BasePO {
 
     private String businessKey;//业务ID
 

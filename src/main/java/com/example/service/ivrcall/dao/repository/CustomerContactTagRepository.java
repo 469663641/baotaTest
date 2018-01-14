@@ -1,6 +1,6 @@
-package com.example.service.ivrCall.dao.repository;
+package com.example.service.ivrcall.dao.repository;
 
-import com.example.service.ivrCall.dao.po.CustomerContactTag;
+import com.example.service.ivrcall.dao.po.CustomerContactTag;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 /**

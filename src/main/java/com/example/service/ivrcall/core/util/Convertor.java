@@ -1,9 +1,8 @@
-package com.example.service.ivrCall.core.util;
+package com.example.service.ivrcall.core.util;
 
-import com.example.service.ivrCall.api.dto.CustomerContactTagDTO;
-import com.example.service.ivrCall.dao.po.CustomerContactTag;
+import com.example.service.ivrcall.api.dto.CustomerContactTagDTO;
+import com.example.service.ivrcall.dao.po.CustomerContactTag;
 import org.springframework.beans.BeanUtils;
-import org.springframework.cglib.beans.BeanCopier;
 
 /**
  * Created by baota on 2017/10/7.

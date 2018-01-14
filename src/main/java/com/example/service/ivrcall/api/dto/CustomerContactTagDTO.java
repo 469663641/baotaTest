@@ -1,6 +1,6 @@
-package com.example.service.ivrCall.api.dto;
+package com.example.service.ivrcall.api.dto;
 
-import com.example.service.ivrCall.dao.po.BasePO;
+import com.example.service.ivrcall.dao.po.BasePO;
 import lombok.Data;
 
 /**

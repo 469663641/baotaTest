@@ -1,7 +1,7 @@
-package com.example.service.ivrCall.dao.repository;
+package com.example.service.ivrcall.dao.repository;
 
 
-import com.example.service.ivrCall.dao.po.AutoCall;
+import com.example.service.ivrcall.dao.po.AutoCall;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
