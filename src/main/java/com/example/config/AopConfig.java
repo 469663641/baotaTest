@@ -1,5 +1,9 @@
 package com.example.config;
 
+import org.aspectj.lang.ProceedingJoinPoint;
+import org.aspectj.lang.annotation.After;
+import org.aspectj.lang.annotation.AfterReturning;
+import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
 import org.aspectj.lang.annotation.Pointcut;
@@ -25,12 +29,35 @@ public class AopConfig {
 
     }
 
-    @Before("matchService()")
+    //@Before("matchService()")
+    //@After("matchService()")
     public void before(){
-
         System.err.println("----before");
 
+    }
 
+    //@AfterReturning(value = "matchService()", returning = "result")//当返回值是result时，advise
+    public void before(Object result){
+        System.err.println("----before");
+
+    }
+
+
+    @Around("matchService()")
+    public Object after(ProceedingJoinPoint joinPoint){
+        System.err.println("before");//前
+        Object result =null;
+
+        try {
+            result = joinPoint.proceed(joinPoint.getArgs());//切点
+            System.err.println("after");//后
+        } catch (Throwable throwable) {
+            throwable.printStackTrace();
+        } finally {
+            System.err.println("finally");//最后
+        }
+
+        return result;
 
 
     }

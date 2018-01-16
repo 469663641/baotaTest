@@ -21,8 +21,5 @@ public class AopTest {
 
         productService.insert();
 
-
-
-
     }
 }
