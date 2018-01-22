@@ -8,18 +8,6 @@ import com.example.service.proxy.api.Subject;
 public class RealSubject implements Subject{
     @Override
     public void rent(){
-        System.err.println("rent");
-        System.err.println("");
-        System.out.println();
-        System.err.println("");
-        System.err.println("");
 
     }
-
-
-    public static void main(String[] args) {
-        System.out.println();
-        System.out.println();
-    }
-
 }
