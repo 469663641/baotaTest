@@ -1,13 +1,22 @@
 package com.example.service.cjlib.demo;
 
+import com.google.common.base.Stopwatch;
+import com.mysql.cj.jdbc.util.TimeUtil;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.cglib.proxy.Enhancer;
+
+import java.util.concurrent.TimeUnit;
 
 /**
  * Created by baota on 2018/1/22.
  */
+@Slf4j
 public class Client {
 
     public static void main(String[] args) {
+
+        Stopwatch stopwatch = Stopwatch.createStarted();
+
         //调用
         //创建动态生成代理对象(目标对象的子类)的类Enhancer
         Enhancer enhancer = new Enhancer();
@@ -23,5 +32,7 @@ public class Client {
 
         dynamicProxy.method1("baota");
         dynamicProxy.method2("baota22");
+
+        log.info("dynamicProxy takes [{}] ms", stopwatch.elapsed(TimeUnit.MILLISECONDS));
     }
 }
