@@ -24,6 +24,5 @@ public class HelloController {
 
         return "jjjj:"+id;
 
-
     }
 }
