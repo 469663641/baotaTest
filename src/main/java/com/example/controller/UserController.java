@@ -1,6 +1,9 @@
 package com.example.controller;
 
 import com.example.model.User;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.data.redis.core.ValueOperations;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -11,12 +14,26 @@ import org.springframework.web.bind.annotation.ResponseBody;
  */
 @Controller
 public class UserController {
-    @RequestMapping(value = "/test",method = RequestMethod.GET)
+
+    @Autowired
+    private RedisTemplate redisTemplate;
+
+    @RequestMapping(value = "/test", method = RequestMethod.GET)
     @ResponseBody
-    public User test(){
+    public User test() {
         return User.builder()
                 .nickname("baota")
                 .account("baota")
                 .build();
+    }
+
+    @RequestMapping(value = "redis", method = RequestMethod.GET)
+    @ResponseBody
+    public String testCache() {
+        redisTemplate.opsForValue().set("baota", "423412阿斯顿撒多");
+        String result = (String) redisTemplate.opsForValue().get("123");
+        System.out.println(result);
+        return "ok";
+
     }
 }
