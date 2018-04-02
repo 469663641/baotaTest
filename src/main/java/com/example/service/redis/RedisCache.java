@@ -86,6 +86,7 @@ public class RedisCache implements Cache{
     }
     private RedisTemplate getRedisTemplate() {
         if (redisTemplate == null) {
+
             //redisTemplate = ApplicationContextHolder.getBean("redisTemplate");
         }
         return redisTemplate;
