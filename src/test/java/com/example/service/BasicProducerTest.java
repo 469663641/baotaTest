@@ -17,7 +17,7 @@ import java.util.UUID;
 @RunWith(SpringRunner.class)
 @SpringBootTest
 public class BasicProducerTest {
-    @Value("${kafka.topic.basictopic}")
+    /*@Value("${kafka.topic.basictopic}")
     private String topic;
 
     @Autowired
@@ -28,6 +28,6 @@ public class BasicProducerTest {
         String messageId = UUID.randomUUID().toString();
         Basic basicMessage = new Basic(messageId, "baota");
         basicProducer.send(topic, basicMessage);
-    }
+    }*/
 
 }

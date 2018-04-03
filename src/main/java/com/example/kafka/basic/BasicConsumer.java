@@ -6,10 +6,10 @@ import org.springframework.stereotype.Component;
 /**
  * Created by baota on 2018/2/8.
  */
-@Component
+//@Component
 public class BasicConsumer {
 
-    @KafkaListener(topics = "${kafka.topic.basictopic}", containerFactory = "basicKafkaListenerContainerFactory")
+    @KafkaListener(topics = "${kafka.topic.basictopic:hh}", containerFactory = "basicKafkaListenerContainerFactory")
     public void receive(Basic basic){
         System.err.println(basic.toString());
 

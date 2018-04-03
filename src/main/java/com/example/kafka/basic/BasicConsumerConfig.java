@@ -16,11 +16,11 @@ import java.util.Map;
 /**
  * Created by baota on 2018/2/8.
  */
-@Configuration
+//@Configuration
 public class BasicConsumerConfig {
-    @Value("${kafka.bootstrap-servers}")
+    @Value("${kafka.bootstrap-servers:hh}")
     private String bootstrapServers;
-    @Value("${kafka.topic.basictopic}")
+    @Value("${kafka.topic.basictopic:hh}")
     private String topic;
 
     @Bean

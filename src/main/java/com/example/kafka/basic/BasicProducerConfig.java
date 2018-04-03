@@ -15,9 +15,9 @@ import java.util.Map;
 /**
  * Created by baota on 2018/2/8.
  */
-@Configuration
+//@Configuration
 public class BasicProducerConfig {
-    @Value("${kafka.bootstrap-servers}")
+    @Value("${kafka.bootstrap-servers:hh}")
     private String bootstrapServers;
 
     @Bean

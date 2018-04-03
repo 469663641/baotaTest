@@ -8,7 +8,7 @@ import org.springframework.stereotype.Component;
 /**
  * Created by baota on 2018/2/8.
  */
-@Component
+//@Component
 public class BasicProducer {
     @Autowired
     @Qualifier("basicKafkaTemplate")
