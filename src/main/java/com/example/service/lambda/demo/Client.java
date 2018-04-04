@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Comparator;
 import java.util.List;
+import java.util.Optional;
 import java.util.function.Predicate;
 
 /**
@@ -19,6 +20,7 @@ public class Client {
         Comparator<Apple> comparator = Comparator.comparing(Apple::getWeight);
         appleList.sort(comparator.reversed().thenComparing(Apple :: getColor));
         System.err.println(appleList);
+        Optional<Apple> min = appleList.stream().min(Comparator.comparing(Apple::getWeight));
 
         //匿名函数，同时声明并实例化一个类，随用随建
         List<Apple> result = filterApples(appleList, new ApplePredicate() {
