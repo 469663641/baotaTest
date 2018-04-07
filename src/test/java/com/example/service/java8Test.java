@@ -2,6 +2,8 @@ package com.example.service;
 
 import com.example.BaotaApplication;
 import com.example.constant.CallResult;
+import com.example.constant.CaloricLevel;
+import com.example.constant.Dish;
 import com.example.service.lambda.demo.Apple;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -22,6 +24,11 @@ import java.util.function.Consumer;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
+
+import static com.example.constant.Dish.menu;
+import static java.util.stream.Collectors.*;
+
+import java.util.stream.Collectors.*;
 
 /**
  * Created by baota on 2018/4/2.
@@ -101,6 +108,47 @@ public class java8Test {
         double average = intSummaryStatistics.getAverage();
         System.err.println(intSummaryStatistics);
 
+    }
+
+    @Test
+    public void reducingTest(){
+        String colorStr = appleList.stream()
+                .map(Apple::getColor).collect(joining(", "));
+        //自定义汇总规约
+        String coloeStr2 = appleList.stream()
+                .collect(Collectors.reducing("", Apple::getColor, (s1, s2) -> s1 + s2));
+        String coloeStr3 = appleList.stream().map(Apple::getColor).reduce("", (s1, s2) -> s1 + s2);
+        System.err.println(colorStr+";"+coloeStr2);
+    }
+
+    @Test
+    public void groupTest(){
+
+        //多级分组。groupby接收 一个分类函数，就是以什么为键来分组，看成一个桶
+        Map<Dish.Type, Map<CaloricLevel, List<Dish>>> dishByCaloric =
+                menu.stream().collect(groupingBy(Dish::getType,
+                groupingBy(dish -> {
+                    if (dish.getCalories() < 400) return CaloricLevel.DIET;
+                    else if (dish.getCalories() < 700) return CaloricLevel.NORMAL;
+                    else return CaloricLevel.FAT;
+                })));
+        Map<CaloricLevel, List<Dish>> caloricLevelListMap = dishByCaloric.get(Dish.Type.FISH);
+        List<Dish> dishes = caloricLevelListMap.get(CaloricLevel.NORMAL);
+        System.err.println(dishByCaloric);
+
+        //按照子组收集数据
+        Map<Dish.Type, Long> dishCount = menu.stream()
+                .collect(groupingBy(Dish::getType, counting()));
+        Map<Dish.Type, Dish> dishMax = menu.stream().collect(groupingBy(Dish::getType, collectingAndThen(
+                maxBy(Comparator.comparing(Dish::getCalories)), Optional::get
+        )));
+        System.err.println(dishMax);
+
+        //对分组后的转换mapping
+        Map<Dish.Type, List<String>> dishMapping = menu.stream()
+                .collect(groupingBy(Dish::getType,
+                        mapping(dish -> dish.getName(), toList())));
+        System.err.println(dishMapping);
     }
 
     private int[] getInts(Integer r, Integer c) {

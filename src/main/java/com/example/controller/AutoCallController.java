@@ -21,7 +21,7 @@ public class AutoCallController {
     @Autowired
     private AutoCallRepository autoCallRepository;
 
-    @RequestMapping(value = "/find/{id}",method = RequestMethod.GET)
+    @RequestMapping(value = "/find/{id}", method = RequestMethod.GET)
     public AutoCall getAutoCallById(@PathVariable("id") String id){
 
         //AutoCall autoCall = autoCallRepository.findOne(id);
