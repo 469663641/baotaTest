@@ -157,6 +157,7 @@ public class java8Test {
         Map<Integer, Apple> appleMap =
                 appleList.stream().collect(Collectors.toMap(apple -> apple.getWeight(), apple -> apple,(oldValue, newValue) -> oldValue));
 
+        System.err.println("haha");
         System.err.println(appleMap);
 
     }
