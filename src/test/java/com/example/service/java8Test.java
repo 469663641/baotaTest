@@ -38,7 +38,7 @@ import java.util.stream.Collectors.*;
 //@ContextConfiguration(classes = BaotaApplication.class)
 public class java8Test {
 
-    public static final List<Apple> appleList = Arrays.asList(new Apple(80, "red")
+    public static final List<Apple> appleList = Arrays.asList(new Apple(30, "red")
             , new Apple(130, "green"), new Apple(180, "black"));
 
     @Test
@@ -149,6 +149,16 @@ public class java8Test {
                 .collect(groupingBy(Dish::getType,
                         mapping(dish -> dish.getName(), toList())));
         System.err.println(dishMapping);
+    }
+
+    @Test
+    public void list2MapTest(){
+        //mergeFunction 当key冲突时：(oldValue, newValue) -> newvalue
+        Map<Integer, Apple> appleMap =
+                appleList.stream().collect(Collectors.toMap(apple -> apple.getWeight(), apple -> apple,(oldValue, newValue) -> oldValue));
+
+        System.err.println(appleMap);
+
     }
 
     private int[] getInts(Integer r, Integer c) {
