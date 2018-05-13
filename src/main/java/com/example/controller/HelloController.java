@@ -16,12 +16,14 @@ import org.springframework.web.bind.annotation.RestController;
 public class HelloController {
     @RequestMapping(value = {"/hello/{id}", "/hi"}, method = RequestMethod.GET)
     public String getHello(@PathVariable("id") Integer id){
+
         return "hello world"+id;
     }
 
     @RequestMapping(value = "/kk",method = RequestMethod.GET)
-    public String gethah(@RequestParam(value = "id",required = false,defaultValue = "00") Integer id){
+    public String gethah(@RequestParam(value = "id",required = false, defaultValue = "00") String id){
 
+        System.err.println(id);
         return "jjjj:"+id;
 
     }

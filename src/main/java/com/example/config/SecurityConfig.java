@@ -16,16 +16,17 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 @EnableGlobalMethodSecurity(prePostEnabled = true)
 public class SecurityConfig extends WebSecurityConfigurerAdapter{
 
+    //要注释掉，不然要验证权限才能访问controller
     @Override
     protected void configure(HttpSecurity http) throws Exception{
-        http.authorizeRequests()
-                .antMatchers("/","/index").permitAll()//index不用验证
+        /*http.authorizeRequests()
+                .antMatchers("/","/index","*//*").permitAll()//index不用验证
                 .anyRequest().authenticated()
                 .and()
                 .httpBasic()
                 .and()
                 .logout()
-                .permitAll();
+                .permitAll();*/
 
 
     }
@@ -35,12 +36,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
     public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception{
 
 
-        auth.inMemoryAuthentication()
+        /*auth.inMemoryAuthentication()
                 .withUser("demo").password("demo").roles("USER")//demo用户
                 .and()
                 .withUser("admin").password("admin").roles("ADMIN");//admin用户
-
-
+*/
     }
 
 
