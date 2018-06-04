@@ -179,4 +179,16 @@ public class java8Test {
         }
         return result;
     }
+
+    @Test
+    public void optionalTest(){
+
+        List<String> strList = Arrays.asList("12", "233");
+
+        ArrayList<String> totalList = new ArrayList<>();
+
+        //Optional.ofNullable(strList).ifPresent(l -> totalList.add());
+
+
+    }
 }
