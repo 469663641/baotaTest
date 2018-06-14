@@ -12,6 +12,10 @@ public class Apple {
         this.color = color;
     }
 
+    public Apple() {
+
+    }
+
     private Integer weight;
     private String color;
 

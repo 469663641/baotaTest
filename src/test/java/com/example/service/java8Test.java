@@ -22,6 +22,7 @@ import java.util.Map;
 import java.util.Optional;
 import java.util.function.Consumer;
 import java.util.function.Function;
+import java.util.function.Predicate;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -39,7 +40,7 @@ import java.util.stream.Collectors.*;
 public class java8Test {
 
     public static final List<Apple> appleList = Arrays.asList(new Apple(30, "red")
-            , new Apple(130, "green"), new Apple(180, "black"));
+            , new Apple(130, "green"), new Apple(130, "black"));
 
     @Test
     public void comparatorTest() {
@@ -160,6 +161,32 @@ public class java8Test {
         System.err.println("haha");
         System.err.println(appleMap);
 
+
+        Map<Integer, List<String>> collect = appleList.stream()
+                .collect(Collectors.groupingBy(Apple::getWeight, mapping(a -> a.getColor(), Collectors.toList())));
+
+        Map<Integer, Apple> appleMap1 = appleList.stream()
+                .collect(Collectors.toMap(p -> p.getWeight(), p -> p, (p, q) -> p));
+
+        System.err.println(appleMap1);
+
+
+    }
+
+    @Test
+    public void predicateTest(){
+
+        Predicate<Apple> predicate =
+                apple -> apple.getWeight().equals(30) && apple.getColor().equals("red");
+        for (Apple a : appleList) {
+            if (predicate.test(a)) {
+                System.err.println(a);
+            }
+        }
+        List<Apple> collect = appleList.stream()
+                .filter(apple -> predicate.test(apple)).collect(Collectors.toList());
+
+        System.err.println(collect);
     }
 
     private int[] getInts(Integer r, Integer c) {
@@ -187,8 +214,51 @@ public class java8Test {
 
         ArrayList<String> totalList = new ArrayList<>();
 
-        //Optional.ofNullable(strList).ifPresent(l -> totalList.add());
+        Optional.ofNullable(strList).ifPresent(s ->
+        {
+            List<String> collect = s.stream().filter(l -> l.equals("12")).collect(Collectors.toList());
+            System.err.println(collect);
+        });
+
+        Optional<Apple> appleOptional = appleList.stream()
+                .filter(apple -> apple.getColor().equals("red")).findFirst();
+
+        if (appleOptional.isPresent()) {
+
+            System.err.println(appleOptional.get());
+        }
+    }
 
 
+    @Test
+    public void mapTest(){
+
+        ArrayList<String> strList = new ArrayList<>();
+
+        List<Apple> appleList = java8Test.appleList.stream().filter(a -> a.getColor().equals("red"))
+                .map(Apple::getColor)
+                .map(color -> {
+                            Apple apple = new Apple();
+                            apple.setColor(color);
+                            return apple;
+                        })
+                .collect(Collectors.toList());
+    }
+
+    @Test
+    public void stringJoinTest(){
+
+        List<String> strings = Arrays.asList("a,a", "c,d");
+        String collect = strings.stream().collect(Collectors.joining(","));
+        List<String> strings1 = Arrays.asList(collect.split(","));
+
+        Map<String, Integer> collect1 = strings1.stream().collect(Collectors.toMap(e -> e, e -> 1, Integer::sum));
+        List<String> collect2 = strings1.stream()
+                .collect(Collectors.toMap(e -> e, e -> 1, Integer::sum))
+                .entrySet().stream()                   // 所有 entry 对应的 Stream
+                .filter(entry -> entry.getValue() > 1) // 过滤出元素出现次数大于 1 的 entry
+                .map(entry -> entry.getKey())          // 获得 entry 的键（重复元素）对应的 Stream
+                .collect(Collectors.toList());
+        System.err.println(collect);
     }
 }

@@ -1,5 +1,12 @@
 package com.example.constant;
 
+import org.hibernate.loader.custom.Return;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Optional;
+import java.util.stream.Stream;
+
 /**
  * Created by baota on 2018/4/4.
  */
@@ -17,7 +24,7 @@ public enum CallResult {
         this.desc = desc;
     }
 
-    public int getCode(){
+    public Integer getCode(){
         return this.code;
     }
 
@@ -26,6 +33,7 @@ public enum CallResult {
     }
 
     public String stateOf(int code){
+
 
         for (CallResult element: CallResult.values()){
             if (code == element.getCode()){
@@ -36,6 +44,28 @@ public enum CallResult {
         return CallResult.UN_KNOWN.desc;
 
     }
+    
+    public CallResult getCallResultByCode(Integer code) {
+
+        CallResult callResult = null;
+
+        ArrayList<Object> list = new ArrayList<>();
+
+        if (code == null) {
+            return CallResult.UN_KNOWN;
+        }
+        Optional<CallResult> callResultOpt = Arrays.stream(CallResult.values())
+                .filter(c -> c.getCode().equals(code)).findAny();
+
+        //callResultOpt.ifPresent(c -> list.add(c));
+
+        if (callResultOpt.isPresent()) {
+            return callResultOpt.get();
+        }
+        return null;
+    }
+
+
 
 
 }
