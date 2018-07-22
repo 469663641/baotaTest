@@ -5,6 +5,7 @@ import com.example.constant.CallResult;
 import com.example.constant.CaloricLevel;
 import com.example.constant.Dish;
 import com.example.service.lambda.demo.Apple;
+import org.apache.commons.lang3.time.DateUtils;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -14,8 +15,10 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Calendar;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.Date;
 import java.util.IntSummaryStatistics;
 import java.util.List;
 import java.util.Map;
@@ -41,6 +44,43 @@ public class java8Test {
 
     public static final List<Apple> appleList = Arrays.asList(new Apple(30, "red")
             , new Apple(130, "green"), new Apple(130, "black"));
+
+
+    @Test
+    public void filterTest(){
+
+        List<Integer> lists = new ArrayList<>();
+        lists.add(1);
+        List<Integer> lists_1 = new ArrayList<>();
+        lists_1.add(1);
+
+        lists.remove(lists_1.get(0));
+
+
+        List<Apple> appleList2 = Arrays.asList(new Apple(30, "red")
+                , new Apple(130, "green"), new Apple(140, "black"));
+
+        List<Apple> red = appleList2.stream()
+                .filter(a -> a.getWeight().equals(30)).collect(toList());
+
+        List<Apple> green = appleList2.stream()
+                .filter(a -> a.getWeight().equals(130)).collect(toList());
+
+        ArrayList<Apple> apples = new ArrayList<>(green);
+
+        red.get(0).setColor(green.get(0).getColor());
+
+        int i = appleList2.indexOf(green.get(0));
+
+
+        appleList2.remove(green.get(0));
+
+        System.err.println(appleList2);
+
+
+
+
+    }
 
     @Test
     public void comparatorTest() {
@@ -73,6 +113,16 @@ public class java8Test {
     public void flatMapTest() {
         List<Integer> row = Arrays.asList(1, 2, 3);
         List<Integer> clo = Arrays.asList(3, 4);
+
+        row.stream().forEach(r ->{
+            clo.stream().forEach(c ->{
+                System.err.println(r);
+                System.err.println(c);
+            });
+
+        });
+
+
         //相当于双层嵌套循环
         List<int[]> nubs = row.stream()
                 .flatMap(r -> clo.stream()
@@ -229,7 +279,6 @@ public class java8Test {
         }
     }
 
-
     @Test
     public void mapTest(){
 
@@ -261,4 +310,23 @@ public class java8Test {
                 .collect(Collectors.toList());
         System.err.println(collect);
     }
+
+    @Test
+    public void dateTest(){
+
+
+        Date date = new Date();
+        System.err.println(date);
+        Calendar cal=Calendar.getInstance();
+        cal.setTime(date);
+        int i = cal.get(Calendar.AM_PM);
+        System.err.println(i);
+
+
+        Date truncate = DateUtils.truncate(new Date(), Calendar.AM_PM);
+
+
+    }
+
+
 }
