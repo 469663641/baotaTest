@@ -4,6 +4,9 @@ import com.example.BaotaApplication;
 import com.example.constant.CallResult;
 import com.example.constant.CaloricLevel;
 import com.example.constant.Dish;
+import com.example.constant.SkinLevelEnum;
+import com.example.model.SubjectDTO;
+import com.example.service.extend.Person;
 import com.example.service.lambda.demo.Apple;
 import org.apache.commons.lang3.time.DateUtils;
 import org.junit.Test;
@@ -19,6 +22,7 @@ import java.util.Calendar;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.IntSummaryStatistics;
 import java.util.List;
 import java.util.Map;
@@ -145,6 +149,23 @@ public class java8Test {
         Optional<Integer> max = integers.stream().reduce(Integer::max);
         Integer count = integers.stream().map(i -> 1).reduce(0, Integer::sum);
         long count2 = integers.stream().count();
+    }
+
+    @Test
+    public void reduceTest2(){
+
+        SubjectDTO subjectDTO = new SubjectDTO();
+        subjectDTO.setSubjectUrl(Arrays.asList("11","22"));
+        SubjectDTO subjectDTO2 = new SubjectDTO();
+        subjectDTO2.setSubjectUrl(Arrays.asList("33","44"));
+
+        List<SubjectDTO> subjectDTOS = Arrays.asList(subjectDTO, subjectDTO2);
+        List<String> reduceList = subjectDTOS.stream().map(SubjectDTO::getSubjectUrl)
+                .reduce(new ArrayList<>(), (p, q) -> {
+                    p.addAll(q);
+                    return p;
+                });
+        System.err.println(reduceList);
     }
 
     @Test
@@ -324,6 +345,49 @@ public class java8Test {
 
 
         Date truncate = DateUtils.truncate(new Date(), Calendar.AM_PM);
+
+
+    }
+    @Test
+    public void zhengZeTest(){
+
+        int n = 2;
+        String code = (n < 29) ? SkinLevelEnum.HSS_LEVEL1.getCode() : (n < SkinLevelEnum.HSS_LEVEL2.getMaxScore()) ? SkinLevelEnum.HSS_LEVEL2.getCode() : SkinLevelEnum.HSS_LEVEL3.getCode();
+    }
+    @Test
+    public void mapStreamTest(){
+        List<String> list = Arrays.asList("a", "b", "c", "d", "a", "a", "d", "d");
+        list.stream().collect(Collectors.toMap(e -> e, e -> 1, Integer::sum)) // 获得元素出现频率的 Map，键为元素，值为元素出现的次数
+                .entrySet().stream()                   // 所有 entry 对应的 Stream
+                .filter(entry -> entry.getValue() > 1) // 过滤出元素出现次数大于 1 的 entry
+                .map(entry -> entry.getKey())          // 获得 entry 的键（重复元素）对应的 Stream
+                .collect(Collectors.toList());
+
+        System.err.println(list);
+
+        Map<Integer, String> map = new HashMap<>();
+        map.put(1,"a1");
+        map.put(2, "a2");
+        String s = map.get(1);
+        map.put(1,"b1");
+        String s1 = map.get(1);
+        System.err.println(s1);
+
+    }
+
+    @Test
+    public void someTest(){
+
+        List<Person> list = new ArrayList<>();
+
+        Person person = new Person("baota");
+        Person person2 = new Person("baota2");
+        list.add(person);
+        list.add(person2);
+
+        //List<String> collect = list.stream().filter(p -> p.getName().equals("99")).map(Person::getName).collect(toList());
+        list.stream().filter(p -> p.getName().equals("baota")).forEach(p -> {p.setAge(3);});
+        System.err.println(list);
 
 
     }
