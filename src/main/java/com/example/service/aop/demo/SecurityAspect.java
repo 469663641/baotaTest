@@ -1,5 +1,6 @@
 package com.example.service.aop.demo;
 
+import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
 import org.aspectj.lang.annotation.Pointcut;
@@ -20,13 +21,16 @@ public class SecurityAspect {
     /**
      * 拦截带有@annotation(AdminOnly)注解的方法
      */
-    @Pointcut("@annotation(AdminOnly)")
+    //@Pointcut("@annotation(AdminOnly)")
     public void adminOnly(){
 
     }
 
-    @Before("adminOnly()")
-    public void checkAccess(){
+    //@Around("adminOnly()")
+    @Around("@annotation(adminOnly)")
+    public void checkAccess(AdminOnly adminOnly){
+        String role = adminOnly.role();
+        System.err.println(role);
         authService.checkAccess();
 
     }

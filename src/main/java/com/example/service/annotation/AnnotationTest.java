@@ -40,6 +40,7 @@ public class AnnotationTest {
 
         //获取所有方法
         Method[] methods = c.getMethods();
+        Method[] declaredMethods = c.getDeclaredMethods();
         //获取所有字段
         Field[] declaredFields = c.getDeclaredFields();
         

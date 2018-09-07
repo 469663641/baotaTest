@@ -8,8 +8,9 @@ import org.springframework.stereotype.Component;
 @Component
 public class ProductService implements Logable{
 
-    //@AdminOnly
-    public void insert(){
+    //@AdminOnly(role = "common")
+    @Log(args = "name")
+    public void insert(String name){
 
         System.err.println("insert product");
     }

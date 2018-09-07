@@ -19,7 +19,7 @@ public class AopTest {
     @Test
     public void aopTest(){
 
-        productService.insert();
+        productService.insert("baota");
 
     }
 }

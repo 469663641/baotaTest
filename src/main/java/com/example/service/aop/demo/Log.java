@@ -6,10 +6,10 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 /**
- * Created by baota on 2018/1/14.
+ * Created by duguangquan on 2018/9/5.
  */
 @Retention(RetentionPolicy.RUNTIME)
-@Target(ElementType.METHOD)//方法注解
-public @interface AdminOnly {
-    String role() default "admin";
+@Target(ElementType.METHOD)
+public @interface Log {
+    String args();
 }

@@ -16,7 +16,6 @@ public class Person extends BaseDomain{
      也就是可以 被使用或者已经被执行，都可以脱离对象而执行。反之，如果没有 static，则必须要依赖于对象实例。
      */
     public static final Integer b =  8;
-    public static final Integer a =  b+8;
 
     private static final long serialVersionUID = 5183699686059151485L;
 
@@ -24,11 +23,26 @@ public class Person extends BaseDomain{
     protected int age;
     protected String sex;
 
+    /**
+     * 编译器会 将代码块按照他们的顺序(假如有多个代码块)插入到所有的构造函数的最前端，这样就能保证不管调用哪个构造函 数都会执行所有的构造代码块
+     */
+    {
+        this.age = 18;
+    }
+
+
+    //有参数的构造函数
     public Person(String name) {
 
         this.name = name;
         System.err.println(name);
     }
+
+    public Person(){
+
+    }
+
+
 
     public String getName() {
         return name;
@@ -57,5 +71,11 @@ public class Person extends BaseDomain{
      void test(){
         System.err.println("person");
 
+    }
+
+    public static void main(String[] args) {
+        Person baota = new Person("baota");
+
+        System.err.println(baota);
     }
 }

@@ -1,6 +1,5 @@
 package com.example.service.thread;
 
-import com.example.service.extend.Person;
 
 /**
  * Created by duguangquan on 2018/8/13.
@@ -15,8 +14,12 @@ public class ThreadTest {
         /*java.lang.Thread.getStackTrace(Thread.java:1559)
         com.example.service.thread.ThreadTest.dumpThread(ThreadTest.java:10)
         com.example.service.thread.ThreadTest.main(ThreadTest.java:21)*/
+        System.err.println(Thread.currentThread().getName());
+
         StackTraceElement[] stackTrace = Thread.currentThread().getStackTrace();
+
         for (StackTraceElement element : stackTrace){
+
             System.err.println(element);
             String className = element.getClassName();
             String methodName = element.getMethodName();
@@ -53,6 +56,8 @@ public class ThreadTest {
     }
 
     public static void main(String[] args) {
+
+        System.err.println(Thread.currentThread().getName());
         dumpThread();
     }
 }

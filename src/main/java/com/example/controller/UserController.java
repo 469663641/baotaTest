@@ -1,6 +1,8 @@
 package com.example.controller;
 
+import com.example.constant.LoginType;
 import com.example.model.User;
+import com.example.service.annotation.LoginApiInject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.core.ValueOperations;
@@ -20,6 +22,7 @@ public class UserController {
 
     @RequestMapping(value = "/test", method = RequestMethod.GET)
     @ResponseBody
+    @LoginApiInject(type = LoginType.NOTLOGIN)
     public User test() {
         return User.builder()
                 .nickname("baota")
@@ -29,6 +32,7 @@ public class UserController {
 
     @RequestMapping(value = "redis", method = RequestMethod.GET)
     @ResponseBody
+    @LoginApiInject(type = LoginType.NOTLOGIN)
     public String testCache() {
         redisTemplate.opsForValue().set("baota", "423412阿斯顿撒多");
         String result = (String) redisTemplate.opsForValue().get("123");
