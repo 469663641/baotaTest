@@ -15,6 +15,7 @@ public class AnnotationBeanWayService {
 
     @PostConstruct
     public void init() {
+
         System.err.println("annotation init");
     }
 

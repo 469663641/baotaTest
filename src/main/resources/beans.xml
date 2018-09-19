@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context.xsd"
+        default-autowire="byName">
+
+
+    <!-- 启用spring mvc 注解 -->
+    <context:annotation-config />
+    <!--自动扫描包-->
+<!--
+    <context:component-scan base-package="com.example"/>
+-->
+    <!--导入其他配置-->
+    <import resource="classpath*:beans2.xml"/>
+
+    <bean id="hello" class="com.example.service.test.Hello"></bean>
+    <!--在基于 XML 的配置元数据的情况下，你可以使用 init-method 属性来指定带有 void 无参数方法的名称-->
+    <bean id="initializingBeanTest" class="com.example.service.spring.boot.demo.bean.life.InitializingBeanTest" init-method="init" destroy-method="destroy"></bean>
+
+    <bean id="helloWorld" class="com.example.service.spring.boot.demo.beanExtends.HelloWorld">
+        <property name="message1" value="helloWorld message1"/>
+        <property name="message2" value="helloWorld message2"/>
+    </bean>
+    <!--bean 继承，重写了message1属性，继承了message2属性， 新增了message3属性-->
+    <bean id="subHelloWorld" class="com.example.service.spring.boot.demo.beanExtends.SubHelloWorld" parent="helloWorld">
+        <property name="message1" value="subHelloWorld message1"/>
+        <property name="message3" value="subHelloWorld message3"/>
+    </bean>
+
+
+    <!--
+    1.bean的构造参数传递，等价于autowired
+    <beans>
+    <bean id="foo" class="x.y.Foo">
+    <constructor-arg ref="bar"/>
+    <constructor-arg ref="baz"/> </bean>
+    <bean id="bar" class="x.y.Bar"/>
+    <bean id="baz" class="x.y.Baz"/>
+     </beans>
+
+     2.使用 type 属性显式的指定了构造函数参数的类型
+     <bean id="exampleBean" class="examples.ExampleBean">
+      <constructor-arg type="int" value="2001"/> <constructor-arg type="java.lang.String" value="Zara"/>
+    </bean>
+
+    3.使用 index 属性来显式的指定构造函数参数的索引
+    <bean id="exampleBean" class="examples.ExampleBean">
+     <constructor-arg index="0" value="2001"/> <constructor-arg index="1" value="Zara"/>
+    </bean>
+
+    4.注入集合
+   <property name="addressList">
+    <list>
+     <value>INDIA</value> <value>Pakistan</value> <value>USA</value> <value>USA</value>
+    </list>
+     </property>
+    <property name="addressSet">
+    <set> <value>INDIA</value> <value>Pakistan</value> <value>USA</value> <value>USA</value>
+    </set>
+     </property>
+    <property name="addressMap">
+    <map>
+        <entry key="1" value="INDIA"/> <entry key="2" value="Pakistan"/> <entry key="3" value="USA"/> <entry key="4" value="USA"/>
+    </map>
+     </property>
+
+    -->
+</beans>

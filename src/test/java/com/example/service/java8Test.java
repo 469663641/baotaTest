@@ -5,6 +5,7 @@ import com.example.constant.CallResult;
 import com.example.constant.CaloricLevel;
 import com.example.constant.Dish;
 import com.example.constant.SkinLevelEnum;
+import com.example.model.Item;
 import com.example.model.SubjectDTO;
 import com.example.service.extend.Person;
 import com.example.service.lambda.demo.Apple;
@@ -16,6 +17,7 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Calendar;
@@ -27,6 +29,7 @@ import java.util.IntSummaryStatistics;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
+import java.util.Set;
 import java.util.function.Consumer;
 import java.util.function.Function;
 import java.util.function.Predicate;
@@ -221,6 +224,30 @@ public class java8Test {
                 .collect(groupingBy(Dish::getType,
                         mapping(dish -> dish.getName(), toList())));
         System.err.println(dishMapping);
+    }
+
+    @Test
+    public void groupingByTest(){
+
+        List<Item> items = Arrays.asList(
+                new Item("apple", 10, new BigDecimal("9.99")),
+                new Item("banana", 20, new BigDecimal("19.99")),
+                new Item("orang", 10, new BigDecimal("29.99")),
+                new Item("watermelon", 10, new BigDecimal("29.99")),
+                new Item("papaya", 20, new BigDecimal("9.99")),
+                new Item("apple", 10, new BigDecimal("9.99")),
+                new Item("banana", 10, new BigDecimal("19.99")),
+                new Item("apple", 20, new BigDecimal("9.99"))
+        );
+
+        Map<BigDecimal, List<Item>> groupByPriceMap = items.stream().collect(Collectors.groupingBy(Item::getPrice));
+        items.stream().collect(Collectors.groupingBy(Item::getPrice, Collectors.counting()));
+
+        Map<BigDecimal, Set<String>> result = items.stream().collect(Collectors.groupingBy(Item::getPrice,
+                Collectors.mapping(Item::getName, Collectors.toSet())));
+        System.err.println(result);
+
+
     }
 
     @Test

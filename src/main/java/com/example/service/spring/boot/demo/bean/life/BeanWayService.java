@@ -15,7 +15,8 @@ public class BeanWayService {
 
     }
 
-    public void destroy(){
+    public void destroy()
+    {
         System.err.println("bean destroy");
     }
 }

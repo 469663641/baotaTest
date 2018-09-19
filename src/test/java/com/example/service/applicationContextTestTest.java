@@ -18,7 +18,7 @@ import java.util.List;
  */
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringBootTest
-public class ClientTest {
+public class applicationContextTestTest {
 
     @Test
     public void lambdaTest() {
