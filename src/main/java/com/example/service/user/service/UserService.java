@@ -8,9 +8,9 @@ import org.springframework.stereotype.Service;
 /**
  * Created by baota on 2017/4/7.
  */
-@Service
+//@Service
 public class UserService {
-    @Autowired
+    //@Autowired
     private UserMapper userMapper;
 
     public void insert(User user) {

@@ -2,6 +2,7 @@ package com.example.service.java.promote;
 
 
 import com.example.service.extend.Person;
+import com.example.service.spring.boot.demo.beanExtends.HelloWorld;
 import org.springframework.security.access.method.P;
 
 import java.util.ArrayList;
@@ -113,6 +114,9 @@ public class ArrayTest {
      */
     public static void subListTest(){
 
+
+
+
         /**
          * compareTo 是判断元素在排序中的位置是否相等，eq uals 是判断元素是否相等，既然一个决定排序位置，一个决定相等，
          * 所以我们非常有必要确保当排序位置相同 时，其 equals 也应该相等。
@@ -140,7 +144,22 @@ public class ArrayTest {
         subList.size();
     }
 
+    public static String listTest(List<String> codes){
+
+        String s = codes.get(0);
+        System.err.println(s);
+        return "";
+
+
+    }
+
     public static void main(String[] args) {
+
+        listTest(Arrays.asList("bota"));
+
+        HelloWorld helloWorld = new HelloWorld();
+        String path = helloWorld.getClass().getResource("/").getPath();
+        System.err.println("");
 
         List<String> list = new ArrayList();
         list.add("a");

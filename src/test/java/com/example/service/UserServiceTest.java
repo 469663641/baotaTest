@@ -17,7 +17,7 @@ import java.util.Date;
 @RunWith(SpringRunner.class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 public class UserServiceTest {
-    @Autowired
+    //@Autowired
     private UserService userService;
 
     @Value("${aa:77}")
