@@ -9,6 +9,7 @@ import com.example.model.Item;
 import com.example.model.SubjectDTO;
 import com.example.service.extend.Person;
 import com.example.service.lambda.demo.Apple;
+import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.time.DateUtils;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -51,6 +52,24 @@ public class java8Test {
 
     public static final List<Apple> appleList = Arrays.asList(new Apple(30, "red")
             , new Apple(130, "green"), new Apple(130, "black"));
+
+    public static void test(){
+
+        List<String> collect = appleList.stream().filter(p -> StringUtils.isNotBlank(p.getColor()))
+                .sorted(Comparator.comparing(Apple::getWeight).reversed())
+                .collect(Collectors.toMap(p -> p.getWeight(), p -> p.getColor(), (p, q) -> p))
+                .entrySet().stream().filter(entry -> entry.getKey().equals(30))
+                .map(p -> {
+                    return p.getValue();
+                })
+                .collect(Collectors.toList());
+
+        System.err.println(collect);
+    }
+
+    public static void main(String[] args) {
+        test();
+    }
 
 
     @Test
@@ -415,8 +434,6 @@ public class java8Test {
         //List<String> collect = list.stream().filter(p -> p.getName().equals("99")).map(Person::getName).collect(toList());
         list.stream().filter(p -> p.getName().equals("baota")).forEach(p -> {p.setAge(3);});
         System.err.println(list);
-
-
     }
 
 
