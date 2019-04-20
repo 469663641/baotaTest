@@ -29,6 +29,9 @@ public class StrategyTest implements ApplicationContextAware{
         this.applicationContext = applicationContext;
     }
 
+    /*Map<String, Interface> result = SpringBeanUtil.getApplicationContext().getBeansOfType(Interface.class);
+
+    key位 bean name，value为实例*/
 
     @Test
     public void modelTest(){

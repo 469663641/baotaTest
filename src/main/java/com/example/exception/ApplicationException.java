@@ -1,4 +1,4 @@
-package com.example.service.exception;
+package com.example.exception;
 
 import java.util.ArrayList;
 
@@ -21,8 +21,8 @@ public class ApplicationException extends BaseException {
     }
 
     /**
-     * Exception in thread "main" com.example.service.exception.ApplicationException: ERROR#不能为空
-     at com.example.service.exception.ApplicationException.main(ApplicationException.java:22)
+     * Exception in thread "main" com.example.exception.ApplicationException: ERROR#不能为空
+     at com.example.exception.ApplicationException.main(ApplicationException.java:22)
      * @param args
      */
     public static void main(String[] args) {

@@ -1,7 +1,5 @@
 package com.example.utils;
 
-import sun.applet.Main;
-
 /**
  * Created by duguangquan on 2018/9/2.
  */

@@ -1,6 +1,6 @@
 package com.example.service.aop.demo;
 
-import com.example.service.exception.BaseException;
+import com.example.exception.BaseException;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.aspectj.lang.ProceedingJoinPoint;

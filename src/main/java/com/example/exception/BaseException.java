@@ -1,4 +1,4 @@
-package com.example.service.exception;
+package com.example.exception;
 
 /**
  * Created by duguangquan on 2018/8/31.

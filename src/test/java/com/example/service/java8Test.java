@@ -260,6 +260,10 @@ public class java8Test {
         System.err.println(appleMap);
 
 
+        Map<String, Apple> appleMap2 = appleList.stream().filter(p -> p.getColor().equals("red"))
+                .collect(Collectors.toMap(p -> p.getColor(), p -> p, (p, q) -> p));
+
+
         Map<Integer, List<String>> collect = appleList.stream()
                 .collect(Collectors.groupingBy(Apple::getWeight, mapping(a -> a.getColor(), Collectors.toList())));
 
