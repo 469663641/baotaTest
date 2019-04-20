@@ -1,6 +1,5 @@
 package com.example.service.community;
 
-import com.example.model.User;
 import com.example.service.user.service.UserDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -29,6 +28,12 @@ public class SkinPlanApplicationImpl implements SkinPlanApplication {
                 //只是形参，在helper中传
                 (params) -> fetchList((String) params[0], (String) params[1])
         );
+
+        /*queryWithCache(
+                () -> helper.queryReport(id, uid, uuid),
+                EXPIRE.FIVE_MINUTE,
+                () -> UserSkinCacheKeySupplier.buildThirdVersionSkinReportKeyById(id)
+        );*/
     }
 
     private String fetchString() {
